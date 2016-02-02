@@ -4,17 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Duty Arrange</title>
-    
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="wrap">
 		<div class="content" id="content">
-			<ul></ul>
+			<ul class="list-group"></ul>
 		</div>
-		<div class="nextContent none" id="nextContent"></div>
-		<a href="javascript:;">查看下周期</a>
+		<a id='btn_searchNextArrage' class="btn btn-block btn-success btn-lg" href="javascript:;">查看下周期</a>
+		<div class="content none" id="nextContent">
+			<ul class="list-group"></ul>
+		</div>
 	</div>
 	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-3.3.5-dist/js/bootstrap.min.js" ></script>
 	<script src="js/jquery.sha1.js"></script>
 	<script src="js/index.js"></script>
 	<script type="text/javascript">

@@ -19,7 +19,10 @@ function searchData(data) {
 			var objAdd = {
 				'tableName': data.tableName,
 				'method': 'POST',
-				'data': {"nameList": members}
+				'data': {"nameList": members},
+				'callback': function(items) {
+					createNowWeekArrage(items.nameList.split(','));
+				}
 			};
 			myAjax(objAdd);
 		} else if(data.length == 1) { //只有一个安排
@@ -35,8 +38,8 @@ function searchData(data) {
 
 //初始化日期安排
 function initArrange(data) {
-	var memberList1 = data[data.length].nameList.split(',');
-	var memberList2 = data[data.length].nameList.split(',');
+	var memberList1 = data[data.length - 2].nameList.split(',');
+	var memberList2 = data[data.length - 1].nameList.split(',');
 	
 	if(!judgeIsLaterWednesday()) {
 		createNowWeekArrage(memberList2);
@@ -47,8 +50,8 @@ function initArrange(data) {
 }
 
 function bindNextWeekClickEvent() {
-	$('.wrap').off('click', 'a').on('click', 'a', function() {
-		if(udgeIsLaterWednesday()) {
+	$('.wrap').off('click', '#btn_searchNextArrage').on('click', '#btn_searchNextArrage', function() {
+		if(judgeIsLaterWednesday()) {
 			$('#nextContent').removeClass('none');
 		} else {
 			alert('周三之后才会生成新的日期安排');
@@ -59,9 +62,9 @@ function bindNextWeekClickEvent() {
 //生成一周的安排
 function createWeekArrage(witchWeek, memberList) {
 	var weekDays = getWeekDays();
-	var appendStr = "<li class='item'><span>日期</span> <span>姓名</span></li>";
+	var appendStr = "<a href='javascript:;' class='list-group-item active item'><span class='itemLeft'>日期</span><span class='itemRight'>姓名</span></a>";
 	for(var i = 0; i < memberList.length; i++) {
-		appendStr += "<li class='item'><span>" + weekDays[i] + "</span> <span>" + memberList[i] + "</span></li>";
+		appendStr += "<a href='javascript:;' class='list-group-item item'><span class='itemLeft'>" + weekDays[i] + "</span><span class='itemRight'>" + memberList[i] + "</span></a>";
 	}
 	if(witchWeek == '0') {
 		$('#content ul').append(appendStr);
@@ -109,9 +112,16 @@ function judgeIsLaterWednesday() {
 
 //获取随机排序的成员列表
 function getMemberList() {
-	var memberList = ["邓占伟", "杨迪", "康兵奎", "齐继超", "蒋蓝宇", "王涛亮", "邓占伟",];
-	
+	var memberList = ["邓占伟", "杨迪", "康兵奎", "齐继超", "蒋蓝宇", "王涛亮", "邓占伟"];
+	memberList = sortArray(memberList);
 	return memberList;
+}
+
+function sortArray(inputArray) {
+	var returnArray = inputArray.sort(function(){
+		return Math.random() > 0.5 ? -1 : 1;
+	});
+	return returnArray;
 }
 
 function getWeekDays() {

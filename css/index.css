@@ -1,0 +1,21 @@
+body,div,span,a,ul,li {
+	margin: 0;
+	padding: 0;
+}
+
+.none {
+	display: none;
+}
+
+.wrap {
+	left: 0;
+	top: 0;
+}
+
+.content ul span.itemLeft {
+	margin-left: 25%;
+}
+
+.content ul .itemRight {
+	margin-left: 25%;
+}
