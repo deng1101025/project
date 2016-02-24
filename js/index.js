@@ -114,6 +114,7 @@ function judgeIsLaterWednesday() {
 function getMemberList() {
 	var memberList = ["贺成璋", "杨迪", "康兵奎", "齐继超", "蒋蓝宇", "王涛亮", "邓占伟"];
 	memberList = sortArray(memberList);
+	memberList = sortArray(memberList);
 	return memberList;
 }
 
