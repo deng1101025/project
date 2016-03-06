@@ -89,6 +89,7 @@ function judgeIsLaterWednesday() {
 	var nowTime = new Date();
 	var week = nowTime.getDay();
 	if (week == 0) {  
+	week = 7;
         day = "星期日";  
 	} else if (week == 1) {  
         day = "星期一";  
